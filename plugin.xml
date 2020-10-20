@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+           id="cordova-plugin-android-normal-text-size"
+      version="0.1.0">
+    <name>Cordova Android Normal Text Size</name>
+    <description>Cordova Android Normal Text Size</description>
+
+    <js-module src="www/normal-text-size.js" name="normal-text-size">
+        <clobbers target="NormalTextSize" />
+    </js-module>
+
+    <!-- Android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="NormalTextSizePlugin">
+                <param name="android-package" value="com.platogo.cordova.normaltextsize.NormalTextSizePlugin" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/NormalTextSizePlugin.java" target-dir="src/com/platogo/cordova/normaltextsize" />
+     </platform>
+</plugin>
