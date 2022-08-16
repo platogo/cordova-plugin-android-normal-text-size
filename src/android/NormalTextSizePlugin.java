@@ -6,19 +6,20 @@ import org.apache.cordova.*;
 import android.webkit.WebView;
 import android.webkit.WebSettings;
 
-
 public class NormalTextSizePlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if ("initialize".equals(action)) {
             try {
-                final WebView webView = (WebView)this.webView.getEngine().getView();
+                final WebView webView = (WebView) this.webView.getEngine().getView();
                 webView.post(new Runnable() {
                     @Override
                     public void run() {
-                        try { 
+                        try {
+                            webView.setInitialScale(100);
                             WebSettings settings = webView.getSettings();
-                            settings.setTextSize(WebSettings.TextSize.NORMAL);
+                            settings.setLoadWithOverviewMode(true);
+                            settings.setTextZoom(100);
                         } catch (RuntimeException e) {
                             return;
                         }
@@ -29,6 +30,6 @@ public class NormalTextSizePlugin extends CordovaPlugin {
             }
             return true;
         }
-        return false;  // Returning false results in a "MethodNotFound" error.
+        return false; // Returning false results in a "MethodNotFound" error.
     }
 }
